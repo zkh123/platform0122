@@ -14,5 +14,5 @@ public interface ModelPsiVarMapper {
 
     int deleteById(@Param(value = "id")int id);
 
-    void updateBatch(@Param(value = "ids") List ids);
+    void updateBatch(@Param(value = "list") List<ModelPsiVar> list);
 }

@@ -6,6 +6,10 @@ import com.example.platform0122.entity.ModelPsiVar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by huanglijun on 2019/1/22
  */
@@ -24,6 +28,20 @@ public class ModelPsiVarService {
     }
 
     public void updateBatch(String ids){
-        modelPsiVarMapper.updateBatch(JSONArray.parseArray(ids).toJavaList(Integer.class));
+        String[] str = ids.split(",");
+        List<ModelPsiVar> list = new ArrayList<ModelPsiVar>();
+        int length = str.length;
+        for (int i = 0 ; i < length ; i++){
+            ModelPsiVar modelPsiVar = new ModelPsiVar();
+            if (i == 0){
+                modelPsiVar.setId(Integer.valueOf(str[i].split("\\[")[1]));
+            }else if (i == length-1){
+                modelPsiVar.setId(Integer.valueOf(str[i].split("\\]")[0]));
+            }else {
+                modelPsiVar.setId(Integer.valueOf(str[i]));
+            }
+            list.add(modelPsiVar);
+        }
+        modelPsiVarMapper.updateBatch(list);
     }
 }
