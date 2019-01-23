@@ -7,6 +7,8 @@ import com.example.platform0122.myException.Msg;
  */
 public class ResultUtil {
 
+    public static final Integer ERROR_CODE = 500;
+
     /**
      * 请求成功
      * @param object

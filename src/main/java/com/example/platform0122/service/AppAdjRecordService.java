@@ -14,8 +14,8 @@ public class AppAdjRecordService {
     @Autowired
     private AppAdjRecordMapper appAdjRecordMapper;
 
-    public AppAdjRecord queryPushData(){
-        return appAdjRecordMapper.queryPushData();
+    public AppAdjRecord selectById(int id){
+        return appAdjRecordMapper.selectById(id);
     }
 
 }

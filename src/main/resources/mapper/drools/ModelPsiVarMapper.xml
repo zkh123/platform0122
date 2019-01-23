@@ -2,18 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.platform0122.dao.drools.ModelPsiVarMapper">
 
-    <select id="queryPushData" resultType="com.example.platform0122.entity.ModelPsiVar">
+    <select id="selectById" resultType="com.example.platform0122.entity.ModelPsiVar">
         SELECT
         	*
         FROM
 		model_psi_var
         where
-		isactive=1 order by id desc LIMIT 1;
+		isactive=1 and id = #{id}
     </select>
 
 
-    <update id="updateById">
+    <update id="deleteById">
         update model_psi_var set isactive = 0 where id = #{id}
+    </update>
+
+    <update id="updateBatch" parameterType="java.util.Arrays">
+        <foreach collection="list" index="index" item="item" open="" close="" separator=",">
+            update model_psi_var
+            <set>
+                where id = ${item.id}
+            </set>
+        </foreach>
     </update>
 
 </mapper>

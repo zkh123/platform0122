@@ -14,4 +14,3 @@ public class Platform0122ApplicationTests {
     }
 
 }
-
