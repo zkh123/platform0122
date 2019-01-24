@@ -19,4 +19,11 @@
         select * from ping_tb_0${tabIndex} where userid = #{userid} and bizid = #{bizid} and isactive = 1 order by insertTime desc LIMIT 1
     </select>
 
+    <insert id="insertOne" parameterType="com.example.platform0122.entity.PingDB" keyProperty="id" useGeneratedKeys="true">
+        insert into ping_tb_0${tabIndex} (userid,listingid,bizid,zuid,dingid,months,credit_score,credit_level,credit_bin,credit_level_pro,model_label,model_ver,
+        process_flag,block_days,info)
+        values (#{userid},#{listingid},#{bizid},#{zuid},#{dingid},#{months},#{creditScore},#{creditLevel},#{creditBin},#{creditLevelPro},#{modelLabel},#{modelVer},
+        #{processFlag},#{blockDays},#{info})
+    </insert>
+
 </mapper>

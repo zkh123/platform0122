@@ -1,7 +1,6 @@
 package com.example.platform0122.dao.local;
 
 import com.example.platform0122.entity.PingDB;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
@@ -14,4 +13,6 @@ public interface PingDBMapper {
 //    PingDB getPingData(@Param(value = "userid") int userid, @Param(value = "bizid") int bizid, @Param(value = "tabIndex") String tabIndex);
 
     PingDB getPingData(Map<String,Object> map);
+
+    Integer insertOne(PingDB pingDB);
 }

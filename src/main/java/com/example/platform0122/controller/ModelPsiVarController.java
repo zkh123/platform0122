@@ -64,4 +64,7 @@ public class ModelPsiVarController {
     public Object addAndGetId(@RequestBody ModelPsiVarModel modelPsiVarModel){
         return ResultUtil.success(modelPsiVarService.addAndGetId(modelPsiVarModel));
     }
+
+
+
 }
