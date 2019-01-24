@@ -11,9 +11,12 @@
 		isactive=1 order by id desc LIMIT 1;
     </select>
 
-
     <update id="updateById">
         update ping_tb set isactive = 0 where id = #{id}
     </update>
+
+    <select id="getPingData" parameterType="java.util.Map" resultType="com.example.platform0122.entity.PingDB">
+        select * from ping_tb_0${tabIndex} where userid = #{userid} and bizid = #{bizid} and isactive = 1 order by insertTime desc LIMIT 1
+    </select>
 
 </mapper>
