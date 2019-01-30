@@ -4,3 +4,18 @@
 2,打包：mvn clean package -Dmaven.test.skip=true -Ptes
        mvn clean package -Ptes
        mvn clean package -Pprd
+
+3,过滤器 和 拦截器
+
+this is MyFilter1,url :/test/filterAndInterceptor
+this is MyFilter2,url :/test/filterAndInterceptor
+NeedLoginInterceptor 方法执行前
+Test2Interceptor 方法执行前
+Test2Interceptor 方法执行后
+NeedLoginInterceptor 方法执行后
+Test2Interceptor 页面渲染前
+NeedLoginInterceptor 页面渲染前
+
+
+过滤器配置顺序是：MyFilter1 -- MyFilter2  执行顺序也是这样的
+拦截器配置顺序是：NeedLoginInterceptor -- Test2Interceptor

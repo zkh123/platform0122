@@ -1,6 +1,7 @@
 package com.example.platform0122.controller;
 
 import com.example.platform0122.config.UrlConfig;
+import com.example.platform0122.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,4 +28,9 @@ public class TestController {
         return param;
     }
 
+
+    @GetMapping(value = "filterAndInterceptor")
+    public Object filterAndInterceptor(){
+        return ResultUtil.success();
+    }
 }
