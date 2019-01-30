@@ -14,7 +14,7 @@ public class AppAdjRecord {
 
     private int id;  //自增主键
     private int userId;  //用户标识
-    private int type;  //类型 1：系统调额, 2：拍拍卡调额
+    private int type;  //类型 1：系统调额, 2：pp卡调额
     private String droolsData;  //drools出参
     private Date insertTime;  //插入时间
     private Date updateTime;  //更新时间
