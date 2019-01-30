@@ -82,6 +82,12 @@
             <version>${commons-lang3.version}</version>
         </dependency>
 
+        <!-- 模板引擎 Thymeleaf 依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
     </dependencies>
 
     <profiles>
