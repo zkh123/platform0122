@@ -1,0 +1,12 @@
+package hljdrools.hljTest
+import hljdrools.hljTest.HljDemo;
+
+rule "Your First Rule"
+    when
+        $a:HljDemo()
+    then
+        $a.setAge(88);
+        $a.setUserId(333333);
+        modify($a){setUsername("90-98-0jljmg040-m")};
+        modify($a){setSex(true)};
+    end

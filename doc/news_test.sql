@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `app_adj_record`;
 CREATE TABLE `app_adj_record` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `userId` bigint(20) NOT NULL COMMENT '用户标识',
-  `type` bigint(20) DEFAULT NULL COMMENT '类型 1：系统调额, 2：拍拍卡调额',
+  `type` bigint(20) DEFAULT NULL COMMENT '类型 1：系统调额, 2：hlj卡调额',
   `drools_data` text COLLATE utf8mb4_unicode_ci COMMENT 'drools出参',
   `inserttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '插入时间',
   `updatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',

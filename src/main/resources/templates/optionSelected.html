@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>下拉框</title>
+</head>
+<body>
+<div>
+    <label>赛事性质</label>
+    <div>
+        <select th:filed="${league.level}" th:value="${league.level}" name="level">
+            <option value="">请选择赛事性质</option>
+            <option th:selected="${league.level=='职业联赛'}" value="职业联赛">职业联赛</option>
+            <option th:selected="${league.level=='社会/企业'}" value="社会/企业">社会/企业</option>
+            <option th:selected="${league.level=='大学'}" value="大学">大学</option>
+            <option th:selected="${league.level=='高中'}" value="高中">高中</option>
+            <option th:selected="${league.level=='初中'}" value="初中">初中</option>
+            <option th:selected="${league.level=='小学'}" value="小学">小学</option>
+            <option th:selector="${league.level=='幼儿园'}" value="幼儿园">幼儿园</option>
+        </select>
+    </div>
+</div>
+</body>
+</html>
