@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.platform0122.dao.drools.DroolsVersionRecordMapper">
+
+    <insert id="insertOne" parameterType="com.example.platform0122.entity.DroolsVersionRecord" keyProperty="id" useGeneratedKeys="true">
+        insert into drools_version_record (type,userid,username,drlVersion)
+        values (#{type},#{userId},#{username},#{drlVersion})
+    </insert>
+
+    <select id="selectOneByType" resultType="com.example.platform0122.entity.DroolsVersionRecord">
+        select * from drools_version_record where type = #{type} and isactive = 1 order by  inserttime desc limit 1
+    </select>
+
+</mapper>

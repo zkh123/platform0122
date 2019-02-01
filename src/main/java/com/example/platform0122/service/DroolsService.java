@@ -1,6 +1,7 @@
 package com.example.platform0122.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.platform0122.entity.DroolsVersionRecord;
 import org.drools.core.impl.InternalKnowledgeBase;
 import org.drools.core.impl.KnowledgeBaseFactory;
 import org.kie.api.command.Command;
@@ -15,6 +16,7 @@ import org.kie.internal.command.CommandFactory;
 import org.kie.internal.io.ResourceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hljdrools.hljTest.HljDemo;
 
@@ -31,7 +33,19 @@ import java.util.List;
 @Service
 public class DroolsService extends KieService{
 
+    @Autowired
+    private DroolsVersionRecordService droolsVersionRecordService;
+
     private final Logger logger = LoggerFactory.getLogger(DroolsService.class);
+
+    private String getDrl(int type){
+        String drlVersion = "";
+        DroolsVersionRecord droolsVersionRecord = droolsVersionRecordService.selectOneByType(type);
+        if (droolsVersionRecord != null){
+            drlVersion = droolsVersionRecord.getDrlVersion();
+        }
+        return drlVersion;
+    }
 
     public void singleDoHljTestDrools(){
 
@@ -66,7 +80,6 @@ public class DroolsService extends KieService{
 
 
     public void singleReadOut() throws UnsupportedEncodingException {
-
         KnowledgeBuilder kbuilder  = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
         String filePath = "D:\\IntelliJIDEA_workspace\\git_pisk\\job\\platform0122\\upload\\hlj-test-1.0.0.1.drl";
@@ -91,19 +104,9 @@ public class DroolsService extends KieService{
     }
 
 
-    public void moreReadOut() throws UnsupportedEncodingException {
-
-        KnowledgeBuilder kbuilder  = KnowledgeBuilderFactory.newKnowledgeBuilder();
-
-        String filePath = "D:\\IntelliJIDEA_workspace\\git_pisk\\job\\platform0122\\upload\\hlj-test-1.0.0.1.drl";
-        File file = new File(URLDecoder.decode(filePath,"utf-8"));
-        kbuilder.add(ResourceFactory.newFileResource(file), ResourceType.DRL);
-        InternalKnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
-        Collection<KiePackage> ss = kbuilder.getKnowledgePackages();
-        kbase.addPackages(ss);
-        StatelessKieSession ksession = kbase.newStatelessKieSession();
-
-        int n = 100;
+    public void moreReadOut(int type) throws UnsupportedEncodingException {
+        StatelessKieSession ksession = getOutAppTestKSession(getDrl(type));
+        int n = 10;
         List<Command> list = new ArrayList<>();
         for (int i = 0 ; i < n ; i++){
             HljDemo hljDemo = new HljDemo();
@@ -115,8 +118,6 @@ public class DroolsService extends KieService{
         }
 
         ExecutionResults results = ksession.execute(CommandFactory.newBatchExecution(list));
-
-
         List<HljDemo> out = new ArrayList<>();
         for (int j = 0 ; j < n; j++){
             Object obj = results.getValue(j+"");
@@ -131,8 +132,5 @@ public class DroolsService extends KieService{
         logger.info("hlj-test-1.0.0.1 返回出参：" + JSONObject.toJSONString(out));
 
     }
-
-
-
 
 }

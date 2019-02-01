@@ -19,4 +19,5 @@ public class AppAdjRecord {
     private Date insertTime;  //插入时间
     private Date updateTime;  //更新时间
     private boolean isActive; //逻辑删除
+
 }

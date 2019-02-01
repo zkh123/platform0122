@@ -11,7 +11,7 @@ public class LoginService {
 
     public User findUserByToken(String token){
         User user = new User();
-        user.setAge(18);
+        user.setEmail("huanglijun@qq.com");
         return user;
     }
 

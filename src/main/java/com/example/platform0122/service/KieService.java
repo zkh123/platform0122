@@ -23,6 +23,7 @@ import java.util.Collection;
  */
 @Component
 public class KieService {
+
     public KieSession apptest_kSession = null;//测试使用
     public KieSession out_apptest_kSession = null;//读取外界drl文件测试使用
     public StatelessKieSession out_other_apptest_kSession = null;//读取外界drl文件测试使用
@@ -36,15 +37,17 @@ public class KieService {
         return apptest_kSession;
     }
 
-    public StatelessKieSession getOutAppTestKSession() throws UnsupportedEncodingException {
-        KnowledgeBuilder kbuilder  = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        String filePath = "D:\\IntelliJIDEA_workspace\\git_pisk\\job\\platform0122\\upload\\hlj-test-1.0.0.1.drl";
-        File file = new File(URLDecoder.decode(filePath,"utf-8"));
-        kbuilder.add(ResourceFactory.newFileResource(file), ResourceType.DRL);
-        InternalKnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
-        Collection<KiePackage> ss = kbuilder.getKnowledgePackages();
-        kbase.addPackages(ss);
-        out_other_apptest_kSession = kbase.newStatelessKieSession();
+    public StatelessKieSession getOutAppTestKSession(String drlVersion) throws UnsupportedEncodingException {
+        if (out_other_apptest_kSession == null){
+            KnowledgeBuilder kbuilder  = KnowledgeBuilderFactory.newKnowledgeBuilder();
+            String filePath = "D:\\IntelliJIDEA_workspace\\git_pisk\\job\\drools-platform0122\\upload\\" + drlVersion;
+            File file = new File(URLDecoder.decode(filePath,"utf-8"));
+            kbuilder.add(ResourceFactory.newFileResource(file), ResourceType.DRL);
+            InternalKnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase();
+            Collection<KiePackage> ss = kbuilder.getKnowledgePackages();
+            kbase.addPackages(ss);
+            out_other_apptest_kSession = kbase.newStatelessKieSession();
+        }
         return out_other_apptest_kSession;
     }
 
@@ -61,4 +64,5 @@ public class KieService {
         }
         return out_apptest_kSession;
     }
+
 }

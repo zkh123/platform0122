@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.platform0122.dao.drools.UserMapper">
+
+    <insert id="insertOne" parameterType="com.example.platform0122.entity.User" keyProperty="id" useGeneratedKeys="true">
+        insert into users (username,password,email,phone)
+        values (#{username},#{password},#{email},#{phone})
+    </insert>
+
+    <select id="selectOneById" resultType="com.example.platform0122.entity.User">
+        select * from users where id = #{id} and isactive = 1
+    </select>
+
+</mapper>

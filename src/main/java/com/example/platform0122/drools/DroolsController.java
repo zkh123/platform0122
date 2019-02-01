@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
@@ -77,12 +78,18 @@ public class DroolsController {
     }
 
 
+    /**
+     * http://localhost:8080/execute/drools/outMore?type=1
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws InterruptedException
+     */
     @GetMapping(value = "/outMore")
     @ResponseBody
-    public Object outMore() throws UnsupportedEncodingException, InterruptedException {
+    public Object outMore(@RequestParam(value = "type") int type) throws UnsupportedEncodingException, InterruptedException {
         long start = System.currentTimeMillis();
         for (int j = 0 ; j < 10000 ; j++){
-            droolsService.moreReadOut();
+            droolsService.moreReadOut(type);
 //            Thread.sleep(100);
         }
         long end = System.currentTimeMillis();
