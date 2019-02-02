@@ -1,0 +1,20 @@
+!!com.example.platform0122.utils.SysConf
+jobs:
+#ASO
+- jobName: aso
+  drlFiles: [crm/aso/*.drl]
+  droolsJarName: data/ASO-1.0.1.4.jar
+  inputClazz: crm.aso.userinfo
+  #Actual file is aso-input.yyyy-MM-dd
+  inputFileNamePattern: aso-input
+  inputFolder: input
+  #output format is csv
+  outputFile: aso-output
+#chenmo
+- jobName: chenmo
+  drlFiles: [crm/chenmo/*.drl]
+  droolsJarName: data/chenmo-1.0.1.jar
+  inputClazz: crm.chenmo.userinfo
+  inputFileNamePattern: chenmo-input
+  inputFolder: input
+  outputFile: chenmo-output
